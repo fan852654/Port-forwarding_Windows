@@ -56,7 +56,7 @@ namespace 端口转发
             string RIP = textBox3.Text;
             string RPort = textBox4.Text;
             Regex r = new Regex("^(1\\d{2}|2[0-4]\\d|25[0-5]|[1-9]\\d|[1-9])\\." + "(1\\d{2}|2[0-4]\\d|25[0-5]|[1-9]\\d|\\d)\\." + "(1\\d{2}|2[0-4]\\d|25[0-5]|[1-9]\\d|\\d)\\." + "(1\\d{2}|2[0-4]\\d|25[0-5]|[1-9]\\d|\\d)$");
-            if(!r.IsMatch(destIP) || !r.IsMatch(RIP))
+            if(!r.IsMatch(destIP) && !destIP.Trim().Equals("0.0.0.0") || !r.IsMatch(RIP))
             {
                 MessageBox.Show("必须输入正常的IP地址", "Error", MessageBoxButtons.OK);
                 return;
@@ -114,6 +114,7 @@ namespace 端口转发
             {
                 comboBox1.Items.Add(ip);
             }
+            comboBox1.Items.Add("0.0.0.0");
             comboBox1.SelectedIndex = 0;
         }
 
@@ -345,6 +346,7 @@ namespace 端口转发
             {
                 comboBox1.Items.Add(ne);
             }
+            comboBox1.Items.Add("0.0.0.0");
             comboBox1.SelectedIndex = 0;
         }
     }
